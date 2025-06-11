@@ -11,18 +11,24 @@ const HomeView = () => {
       <Card title="Dashboard de Gestión" className="home-card">
         <p>Monitoreo Integrado de Usuarios y Productos</p>
         
-        <div className="flex gap-3 mt-4">
+        <div className="flex gap-2 mt-">
           <Button 
             label="Ver Usuarios" 
-            icon="pi pi-arrow-right" 
+            icon="pi pi-center" 
             className="p-button-secondary" 
             onClick={() => navigate('/unicorns')}
           />
           <Button 
-            label="Ver Productos" 
-            icon="pi pi-arrow-right" 
+            label="Ver Productos" center
+            icon="pi pi-center" 
             className="p-button-secondary"
             onClick={() => navigate('/products')} 
+          />
+          <Button 
+            label="Ventas" 
+            icon="pi pi-center" 
+            className="p-button-secondary"
+            onClick={() => navigate('/ventas')} 
           />
         </div>
       </Card>

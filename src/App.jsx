@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import UnicornsContainer from "./unicorns/UnicornContainer";
 import ProductsPage from "./products";
+import SalesPage from './ventas';
 import { UnicornProvider } from "./context/UnicornContext";
 import HomeView from "./home/HomeView";
 
@@ -33,6 +34,11 @@ function App() {
       label: 'Usuarios',
       icon: 'pi pi-star',
       command: () => navigate('/usuarios')
+    },
+    {
+      label: 'Ventas',
+      icon: 'pi pi-shopping-cart',
+      command: () => navigate('/ventas')
     }
   ];
 
@@ -79,6 +85,7 @@ function App() {
             />
             <Route path="products" element={<ProductsPage />} />
             <Route path="usuarios" element={<UnicornsContainer />} />
+            |<Route path="ventas" element={<SalesPage />} />
           </Routes>
         </div>
 
