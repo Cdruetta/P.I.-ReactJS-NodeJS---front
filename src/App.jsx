@@ -2,12 +2,14 @@ import { PrimeReactProvider } from 'primereact/api';
 import { Menubar } from 'primereact/menubar';
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-import UnicornsContainer from "./unicorns/UnicornContainer";
-import ProductsPage from "./products";
+import UnicornsContainer from "./layouts/unicorns/UnicornContainer";
+import ProductsPage from "./layouts/products";
 import SalesPage from './ventas';
 import { UnicornProvider } from "./context/UnicornContext";
-import HomeView from "./home/HomeView";
+import HomeView from "./layouts/home/HomeView";
 
+import LoginForm from "./layouts/auth/LoginForm";      // <-- agrego import Login
+import RegisterForm from "./layouts/auth/RegisterForm"; // <-- agrego import Register
 
 const UsuariosPage = () => <h1>Usuarios</h1>;
 
@@ -39,7 +41,17 @@ function App() {
       label: 'Ventas',
       icon: 'pi pi-shopping-cart',
       command: () => navigate('/ventas')
-    }
+    },
+    {
+      label: 'Login',
+      icon: 'pi pi-sign-in',
+      command: () => navigate('/login')
+    },
+    {
+      label: 'Registro',
+      icon: 'pi pi-user-plus',
+      command: () => navigate('/register')
+    },
   ];
 
   const footerItems = [
@@ -84,15 +96,19 @@ function App() {
               }
             />
             <Route path="products" element={<ProductsPage />} />
-            <Route path="usuarios" element={<UnicornsContainer />} />
-            |<Route path="ventas" element={<SalesPage />} />
+            <Route path="usuarios" element={<UsuariosPage />} />
+            <Route path="ventas" element={<SalesPage />} />
+
+            {/* Rutas nuevas para login y registro */}
+            <Route path="login" element={<LoginForm />} />
+            <Route path="register" element={<RegisterForm />} />
           </Routes>
         </div>
 
         <div className="surface-ground p-4 border-top-1 surface-border">
           <div className="flex justify-content-between align-items-center">
             <div className="flex align-items-center gap-3">
-              <span className="text-sm">© 2023 GCsoft</span>
+              <span className="text-sm">© 2025 GCsoft</span>
             </div>
             <div className="flex gap-4">
               {footerItems.map((item, index) => (

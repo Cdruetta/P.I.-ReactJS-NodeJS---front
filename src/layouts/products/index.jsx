@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import ProductsView from "./ProductsView";
-import ProductForm from "./ProductsForm";
+import ProductsForm from "./ProductsForm";
 
 const API_URL = "http://localhost:3000/productos";
 
@@ -92,7 +92,7 @@ const ProductsPage = () => {
 
   return (
     <>
-      <ProductForm
+      <ProductsForm
         formData={formData}
         onChange={handleChange}
         onCreate={handleCreate}

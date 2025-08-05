@@ -1,7 +1,7 @@
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../../App.css';
 
 const HomeView = () => {
   const navigate = useNavigate();
