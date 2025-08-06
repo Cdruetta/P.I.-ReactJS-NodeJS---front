@@ -1,6 +1,7 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Toast } from 'primereact/toast';
@@ -105,14 +106,11 @@ const UnicornsView = ({
       <Button
         icon="pi pi-trash"
         className="p-button-rounded p-button-danger p-button-sm"
-        // Cambié aquí para usar id o _id según exista
         onClick={() => confirmDelete(rowData._id || rowData.id)}  
         tooltip="Eliminar"
       />
     </div>
   );
-
-  console.log('UnicornsView unicorns:', unicorns);
 
   return (
     <div className="grid p-fluid">
@@ -148,6 +146,19 @@ const UnicornsView = ({
                 value={formData.email || ''}
                 onChange={onChange}
                 placeholder="Email"
+              />
+            </div>
+            {/* CAMPO CONTRASEÑA AGREGADO */}
+            <div className="field col-12">
+              <Password
+                id="password"
+                name="password"
+                value={formData.password || ''}
+                onChange={onChange}
+                placeholder="Contraseña"
+                toggleMask
+                feedback={false}
+                className="w-full"
               />
             </div>
             <div className="col-12 flex justify-content-end">

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import UnicornsView from './UnicornsView';
 
-const API_URL = 'http://localhost:3000/usuarios'; // Cambia por tu endpoint real
+const API_URL = 'http://localhost:3000/usuarios'; 
 
 const UnicornsContainer = () => { 
-  // Estado del formulario sin color y poder
-  const [formData, setFormData] = useState({ nombre: "", edad: "", email: "" });
+  const [formData, setFormData] = useState({ nombre: "", edad: "", email: "", password: "" });
   const [unicorns, setUnicorns] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
@@ -25,15 +24,24 @@ const UnicornsContainer = () => {
 
   const onCreate = async () => {
     try {
-      await fetch(API_URL, {
+      console.log("Enviando usuario:", formData); // <-- Log para verificar datos enviados
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Error al crear el usuario");
+      }
+
       fetchUnicorns();
-      setFormData({ nombre: "", edad: "", email: "" });
+      setFormData({ nombre: "", edad: "", email: "", password: "" });
+
     } catch (error) {
-      console.error("Error creating usuario:", error);
+      console.error("Error creating usuario:", error.message);
     }
   };
 
@@ -46,7 +54,7 @@ const UnicornsContainer = () => {
       });
       fetchUnicorns();
       setEditingId(null);
-      setFormData({ nombre: "", edad: "", email: "" });
+      setFormData({ nombre: "", edad: "", email: "" , password: "" });
     } catch (error) {
       console.error("Error updating usuario:", error);
     }
@@ -62,6 +70,7 @@ const UnicornsContainer = () => {
   };
 
   const onChange = (e) => {
+    console.log(`Campo cambiado: ${e.target.name} = ${e.target.value}`); // <-- Log para verificar cambios
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -73,6 +82,7 @@ const UnicornsContainer = () => {
       nombre: unicorn.nombre,
       edad: unicorn.edad,
       email: unicorn.email,
+      password: unicorn.password || "", 
     });
     setEditingId(unicorn.id);
   };
